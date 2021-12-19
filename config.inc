@@ -22,7 +22,7 @@
 ;
 ;=========================================================================
 
-%define DATE		'05/20/20'	; BIOS release date MM/DD/YY
+%define DATE		'12/19/21'	; BIOS release date MM/DD/YY
 %define VERSION		'0.9.8'		; BIOS version
 
 ; Machine type is defined in the Makefile
@@ -30,6 +30,7 @@
 ;%define MACHINE_FE2010A 		; Faraday FE2010A
 ;%define MACHINE_XT			; IBM PC/XT or highly compatible board
 					; FIXME: not implemented yet
+;%define MACHINE_DUCK			; Duck's machine (not real yet)
 
 ; Settings for Xi 8088
 %ifdef MACHINE_XI8088
@@ -71,6 +72,25 @@
 %define MAX_RAM_SIZE	640		; Scan this much memory during POST
 %define RAM_TEST_BLOCK	16384		; block size for RAM test
 %endif ; MACHINE_XT
+
+; Settings for Duck's machine
+%ifdef MACHINE_DUCK
+%define	START		8000h		; BIOS starts at offset 8000h
+%define MODEL_BYTE	0FCh		; Pretend it is an IBM PC/AT
+%define AT_RTC				; Has AT-compatible RTC
+%define AT_RTC_NVRAM			; Use AT RTC for BIOS configuration
+%define AT_NMI				; Use port 70h for NMI enable/disable
+%define AT_DELAY			; Use refresh bit of port 61h for delays
+%define SECOND_PIC			; Has two PICs (AT-style)
+%define AT_KEYBOARD			; Has AT-compatible keyboard controller
+%define PS2_MOUSE			; Enable PS/2 auxiliary device support
+%define DISABLE_KBD_DURING_INTERRUPTS	; Don't disable keyboard in INT1
+%define MIN_RAM_SIZE	32		; At least 32 KiB to boot the system
+%define MAX_RAM_SIZE	640		; Scan this much memory during POST
+%define RAM_TEST_BLOCK	16384		; block size for RAM test
+%define EBDA_SIZE	1		; 1KB reserved for EBDA
+					; EBDA is required for PS/2 aux support
+%endif ; MACHINE_DUCK
 
 ; Automatic settings based on the machine settings above
 %ifdef AT_RTC or AT_RTC_NVRAM or AT_FLASH_NVRAM

@@ -20,9 +20,11 @@
 # Xi 8088 Board
 #MACHINE=MACHINE_XI8088
 # Micro 8088 Board
-MACHINE=MACHINE_FE2010A
+#MACHINE=MACHINE_FE2010A
 # IBM PC/XT or highly compatible board (FIXME: not implemented yet)
 #MACHINE=MACHINE_XT
+# Duck's machine (not real yet)
+MACHINE_DUCK
 
 # Flash ROM IC type (as supported by minipro programmer)
 FLASH_ROM=SST39SF010A
